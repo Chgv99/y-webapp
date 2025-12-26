@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
+import { AuthResponse } from "../dto/auth-response";
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -11,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string)/*: Observable<LoginResponse>*/ {
-    return this.http.post(`${this.API}/auth/login`, { username: username, password: password });
+    return this.http.post<AuthResponse>(`${this.API}/auth/login`, { username: username, password: password });
   }
 
   //   getAll(): Observable<User[]> {
