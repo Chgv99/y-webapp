@@ -8,10 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Feed } from "../home/feed/feed";
 import { MatCardModule } from '@angular/material/card';
+import { BlobBackground } from '../blob-background/blob-background';
 
 @Component({
   selector: 'app-login-form',
-  imports: [FormsModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule],
+  imports: [FormsModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, BlobBackground],
   templateUrl: './login-form.html',
   styleUrl: './login-form.scss',
 })
