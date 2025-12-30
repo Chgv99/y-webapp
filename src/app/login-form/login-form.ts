@@ -12,7 +12,7 @@ import { BlobBackground } from '../blob-background/blob-background';
 
 @Component({
   selector: 'app-login-form',
-  imports: [FormsModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, BlobBackground],
+  imports: [FormsModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule],
   templateUrl: './login-form.html',
   styleUrl: './login-form.scss',
 })
