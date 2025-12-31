@@ -1,5 +1,6 @@
 @for (post of postList(); track $index) {
   <app-feed-post [post]="post"></app-feed-post>
+  <br>
 } @empty {
   <p>No posts to show</p>
 }
