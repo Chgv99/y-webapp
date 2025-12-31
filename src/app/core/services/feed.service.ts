@@ -14,8 +14,13 @@ export class FeedService {
     constructor(private http: HttpClient) { }
 
     getFeed(): Observable<Post[]> {
-        return this.http.get<any[]>(`${this.API}/api/post`).pipe(
-            map(response => response.map(item => new Post(item.message, new User(0, 'mockedUser'), item.createdAt)))
-        );
+        return this.http
+            .get<any>(`${this.API}/api/post?page=0&size=10&sort=createdAt,desc`)
+            .pipe(
+                map(response => response?.content || []),
+                map((posts: Post[]) =>
+                    posts.map(post => new Post(post.message, post.author, post.createdAt))
+                )
+            );
     }
 }
