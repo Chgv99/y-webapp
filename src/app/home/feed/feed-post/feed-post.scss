@@ -1,6 +1,15 @@
+mat-card * {
+    padding: 0 16px;
+}
 
-.date {
+mat-card mat-card-header {
+    padding-top: 16px;
+    font-weight: bold;
+}
+
+mat-card mat-card-footer {
     display: flex;
     justify-content: end;
     color: gray;
+    font-weight: lighter;
 }
