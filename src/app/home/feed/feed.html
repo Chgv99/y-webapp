@@ -1,11 +1,5 @@
-<p>feed works!</p>
-
-@for (post of postList; track $index) {
-  <div>
-      <p>{{ post.message }}</p>
-      <p>{{ post.createdAt }}</p>
-  </div>
-
+@for (post of postList(); track $index) {
+  <app-feed-post [post]="post"></app-feed-post>
 } @empty {
-  <p>No items</p>
+  <p>No posts to show</p>
 }
