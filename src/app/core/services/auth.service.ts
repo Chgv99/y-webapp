@@ -4,15 +4,15 @@ import { signal } from '@angular/core';
 import { AuthResponse } from '../dto/auth-response';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 export const authToken = signal<string | null>(null);
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
-
-  private readonly API = `${environment.apiUrl}`;
+export class AuthService extends ApiService {
 
   constructor(private http: HttpClient) {
+    super();
     if (typeof localStorage !== 'undefined') {
       authToken.set(localStorage.getItem('token'));
     }
