@@ -1,7 +1,7 @@
 <main class="centered">
     <mat-card>
         <mat-card-header>
-            <h2>Login</h2>
+            <h2>Register</h2>
         </mat-card-header>
         <mat-card-content>
             <form (ngSubmit)="submitCredentials(fusername.value, fpass.value)">
@@ -13,9 +13,13 @@
                     <mat-label>Password</mat-label>
                     <input matInput [type]="hide() ? 'password' : 'text'" type="password" id="fpass" name="fpass" #fpass><br>
                 </mat-form-field>
-                <button matFab extended class="primary" type="submit">Login</button>
+                <mat-form-field>
+                    <mat-label>Repeat password</mat-label>
+                    <input matInput [type]="hide() ? 'password' : 'text'" type="password" id="fpass2" name="fpass2" #fpass2><br>
+                </mat-form-field>
+                <button matFab extended class="primary" type="submit">Create account</button>
             </form>
-            <a matButton class="primary register-button" href="/register">Register</a>
+            <a matButton class="primary register-button" href="/login">I already have an account</a>
         </mat-card-content>
     </mat-card>
 </main>
