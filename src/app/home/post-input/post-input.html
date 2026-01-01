@@ -1,0 +1,12 @@
+<mat-card class="post-input-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-card-content>
+            <mat-form-field id="postinputfield">
+                <input matInput type="text" id="postinput" name="postinput" formControlName="message" #postinput><br>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-footer>
+            <button matFab extended class="primary submit-button" type="submit">Post</button>
+        </mat-card-footer>
+    </form>
+</mat-card>

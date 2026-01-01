@@ -1,26 +1,31 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { ThisReceiver } from "@angular/compiler";
 import { Post } from "../../model/post";
 import { map, Observable } from "rxjs";
 import { User } from "../../model/user";
+import { ApiService } from "./api.service";
 
 @Injectable({ providedIn: 'root' })
-export class FeedService {
+export class FeedService extends ApiService {
 
-    private readonly API = `${environment.apiUrl}`;
+    feed = signal<Post[]>([]);
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        super();
+    }
 
-    getFeed(): Observable<Post[]> {
-        return this.http
+    getFeed() {
+        this.http
             .get<any>(`${this.API}/api/post?page=0&size=10&sort=createdAt,desc`)
             .pipe(
                 map(response => response?.content || []),
                 map((posts: Post[]) =>
                     posts.map(post => new Post(post.message, post.author, post.createdAt))
                 )
-            );
+            ).subscribe((posts: Post[]) => {
+                this.feed.set(posts);
+            })
     }
 }

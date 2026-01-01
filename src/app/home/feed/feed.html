@@ -1,4 +1,4 @@
-@for (post of postList(); track $index) {
+@for (post of feedService.feed(); track $index) {
   <app-feed-post [post]="post"></app-feed-post>
   <br>
 } @empty {

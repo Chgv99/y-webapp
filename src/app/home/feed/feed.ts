@@ -13,21 +13,12 @@ import { FeedPost } from './feed-post/feed-post';
 export class Feed {
   feedService = inject(FeedService);
 
-  postList = signal<Post[]>([]);
-
   ngOnInit() {
     this.getFeed();
   }
 
   getFeed() {
-    this.feedService.getFeed().subscribe({
-      next: res => {
-        console.log('res ', res)
-        res.forEach(r => console.log('r', r.message));
-        this.postList.set(res);
-      },
-      error: err => console.log('err ', err)
-    })
+    this.feedService.getFeed();
   }
 
   trackById(index: number, post: Post) {
