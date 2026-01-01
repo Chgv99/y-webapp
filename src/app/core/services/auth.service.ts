@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { signal } from '@angular/core';
 import { AuthResponse } from '../dto/auth-response';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
 
 export const authToken = signal<string | null>(null);
 
@@ -18,7 +19,13 @@ export class AuthService {
   }
 
   login(username: string, password: string)/*: Observable<LoginResponse>*/ {
-    return this.http.post<AuthResponse>(`${this.API}/auth/login`, { username: username, password: password });
+    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API}/auth/login`, { username: username, password: password });
+    res.subscribe({
+      next: res => {
+        this.setToken(res.token);
+      }
+    });
+    return res;
   }
 
   setToken(token: string) {

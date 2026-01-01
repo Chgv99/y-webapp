@@ -26,7 +26,6 @@ export class LoginForm {
   submitCredentials(username: string, password: string) {
     this.authService.login(username, password).subscribe({
       next: res => {
-        this.authService.setToken(res.token);
         this.router.navigate(['/home'])
       },
       error: err => console.error('error', err)
