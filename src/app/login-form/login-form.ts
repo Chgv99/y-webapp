@@ -24,7 +24,7 @@ export class LoginForm {
   hide = signal(true);
 
   submitCredentials(username: string, password: string) {
-    this.userService.login(username, password).subscribe({
+    this.authService.login(username, password).subscribe({
       next: res => {
         this.authService.setToken(res.token);
         this.router.navigate(['/home'])
