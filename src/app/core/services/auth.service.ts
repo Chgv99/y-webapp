@@ -28,6 +28,16 @@ export class AuthService extends ApiService {
     return res;
   }
 
+  register(username: string, password: string)/*: Observable<LoginResponse>*/ {
+    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API}/auth/login`, { username: username, password: password });
+    res.subscribe({
+      next: res => {
+        this.setToken(res.token);
+      }
+    });
+    return res;
+  }
+
   isLoggedIn(): boolean {
     if (typeof localStorage === 'undefined') return false
     const token = localStorage.getItem('token');
