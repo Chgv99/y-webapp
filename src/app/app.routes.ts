@@ -6,7 +6,6 @@ import { GuestGuard } from './core/guards/guest.guard';
 import { RegisterForm } from './register-form/register-form';
 
 export const routes: Routes = [
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
   { 
     path: 'register', 
     canActivate: [GuestGuard],

@@ -6,6 +6,7 @@ import { Post } from "../../model/post";
 import { map, Observable } from "rxjs";
 import { User } from "../../model/user";
 import { ApiService } from "./api.service";
+import { authReady } from "./auth.service";
 
 @Injectable({ providedIn: 'root' })
 export class FeedService extends ApiService {
@@ -17,6 +18,7 @@ export class FeedService extends ApiService {
     }
 
     getFeed() {
+        if (!authReady()) return;
         this.http
             .get<any>(`${this.API}/api/post?page=0&size=10&sort=createdAt,desc`)
             .pipe(
