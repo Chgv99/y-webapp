@@ -1,8 +1,13 @@
-<main class="centered">
+<mat-toolbar>
     <h2>Home</h2>
+    <!-- <div class="right"> -->
+        <button matButton class="primary logout-button" type="submit" (click)="onLogout()">Logout</button>
+    <!-- </div> -->
+</mat-toolbar>
+
+<main class="centered">
     <app-post-input></app-post-input>
-    <br>
     <app-feed></app-feed>
     <br>
-    <button matButton class="primary" type="submit" (click)="onLogout()">Logout</button>
+    <!-- <button matButton class="primary logout-button" type="submit" (click)="onLogout()">Logout</button> -->
 </main>
