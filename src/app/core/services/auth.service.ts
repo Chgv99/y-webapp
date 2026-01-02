@@ -28,6 +28,10 @@ export class AuthService extends ApiService {
     return res;
   }
 
+  logout() {
+    this.clearToken();
+  }
+
   register(username: string, password: string)/*: Observable<LoginResponse>*/ {
     var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API}/auth/register`, { username: username, password: password });
     res.subscribe({
