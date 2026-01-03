@@ -1,6 +1,7 @@
 <mat-toolbar>
     <h2>Home</h2>
     <!-- <div class="right"> -->
+        <button matButton class="primary logout-button" type="submit" (click)="onLogout()">{{user()?.username}}</button>
         <button matButton class="primary logout-button" type="submit" (click)="onLogout()">Logout</button>
     <!-- </div> -->
 </mat-toolbar>

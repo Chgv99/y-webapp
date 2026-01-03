@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 import { Feed } from './feed/feed';
 import { PostInput } from "./post-input/post-input";
-import { AuthService } from '../core/services/auth.service';
-import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { user } from '../core/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class Home {
   router: Router = inject(Router);
   authService = inject(AuthService);
+  user = user;
+
   onLogout() {
-    console.log('logout');
     this.authService.logout();
     this.router.navigate(['/login']);
   }
