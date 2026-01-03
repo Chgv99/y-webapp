@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { Feed } from './feed/feed';
 import { PostInput } from "./post-input/post-input";
-import { user } from '../core/services/user.service';
+import { UserService } from '../core/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ import { user } from '../core/services/user.service';
 export class Home {
   router: Router = inject(Router);
   authService = inject(AuthService);
-  user = user;
+  userService = inject(UserService);
 
   onLogout() {
     this.authService.logout();
