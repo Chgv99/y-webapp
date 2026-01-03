@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FeedService } from '../../core/services/feed.service';
 import { Post } from '../../model/post';
-import { CommonModule } from '@angular/common';
 import { FeedPost } from './feed-post/feed-post';
 
 @Component({

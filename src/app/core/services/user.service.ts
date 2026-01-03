@@ -1,7 +1,7 @@
 import { computed, effect, inject, Injectable, PLATFORM_ID, signal } from "@angular/core";
 import { ApiService } from "./api.service";
 import { User } from "../../model/user";
-import { AuthService, authToken } from "./auth.service";
+import { AuthService } from "./auth.service";
 import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({ providedIn: 'root' })
@@ -10,7 +10,7 @@ export class UserService extends ApiService {
     private platformId = inject(PLATFORM_ID);
 
     user = computed(() => {
-        const json = this.authService.parseToken(authToken() ?? '')
+        const json = this.authService.parseToken(this.authService.authToken() ?? '')
         if (json) {
             return new User(json.sub, json.username, json.role, json.createdAt)
         }
@@ -21,7 +21,7 @@ export class UserService extends ApiService {
         super();
 
         effect(() => {
-            const token = authToken();
+            const token = this.authService.authToken();
             const json = token ? this.authService.parseToken(token) : null;
 
             if (isPlatformBrowser(this.platformId) && json) {
