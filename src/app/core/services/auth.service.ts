@@ -3,6 +3,8 @@ import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../dto/auth-response';
 import { ApiService } from './api.service';
+import { user } from './user.service';
+import { User } from '../../model/user';
 
 export const authToken = signal<string | null>(null);
 export const authReady = signal(false);
@@ -23,6 +25,8 @@ export class AuthService extends ApiService {
     res.subscribe({
       next: res => {
         this.setToken(res.token);
+        const json = JSON.parse(atob(res.token.split('.')[1]));
+        user.set(new User(json.sub, json.username, json.role, json.createdAt));
       }
     });
     return res;
