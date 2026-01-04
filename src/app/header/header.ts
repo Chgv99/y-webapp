@@ -1,0 +1,25 @@
+import { Component, inject, input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
+import { UserService } from '../core/services/user.service';
+import { PageService } from '../core/services/page.service';
+
+@Component({
+  selector: 'app-header',
+  imports: [MatButtonModule, MatToolbarModule],
+  templateUrl: './header.html',
+  styleUrl: './header.scss',
+})
+export class Header {
+  router: Router = inject(Router);
+  authService = inject(AuthService);
+  userService = inject(UserService);
+  pageService = inject(PageService);
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+}

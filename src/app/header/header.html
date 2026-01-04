@@ -1,0 +1,5 @@
+<mat-toolbar>
+    <h2>{{pageService.title()}}</h2>
+        <button matButton class="primary logout-button" type="submit" (click)="onLogout()">{{userService.user()?.username}}</button>
+        <button matButton class="primary logout-button" type="submit" (click)="onLogout()">Logout</button>
+</mat-toolbar>
