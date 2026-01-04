@@ -4,21 +4,26 @@ import { Home } from './home/home';
 import { AuthGuard } from './core/guards/auth.guard';
 import { GuestGuard } from './core/guards/guest.guard';
 import { RegisterForm } from './register-form/register-form';
+import { Layout } from './layout/layout';
 
 export const routes: Routes = [
-  { 
-    path: 'register', 
+  {
+    path: 'register',
     canActivate: [GuestGuard],
     component: RegisterForm
   },
-  { 
-    path: 'login', 
+  {
+    path: 'login',
     canActivate: [GuestGuard],
     component: LoginForm
   },
-  { 
-    path: 'home', 
+  {
+    path: '',
+    component: Layout,
     canActivate: [AuthGuard],
-    component: Home
-  },
+    children: [
+      { path: 'home', component: Home },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
+    ]
+  }
 ];
