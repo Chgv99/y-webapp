@@ -7,7 +7,6 @@ export class GuestGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean | UrlTree {
-    console.log('guest guard')
     if (this.authService.isLoggedIn()) return this.router.createUrlTree(['/home']);
     return true;
   }
