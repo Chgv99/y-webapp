@@ -3,7 +3,6 @@ import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../dto/auth-response';
 import { ApiService } from './api.service';
-import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends ApiService {
@@ -13,20 +12,16 @@ export class AuthService extends ApiService {
 
   constructor(private http: HttpClient) {
     super();
-    if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('token') ?? '';
-      this.authToken.set(token);
-    }
+    const token = localStorage.getItem('token') ?? '';
+    this.authToken.set(token);
     this.authReady.set(true);
 
     effect(() => {
-      if (isPlatformBrowser(this.platformId)) {
-        const token = this.authToken();
-        if (token) {
-          localStorage.setItem('token', token);
-        } else {
-          localStorage.removeItem('token');
-        }
+      const token = this.authToken();
+      if (token) {
+        localStorage.setItem('token', token);
+      } else {
+        localStorage.removeItem('token');
       }
     });
   }
@@ -56,8 +51,6 @@ export class AuthService extends ApiService {
   }
 
   isLoggedIn(): boolean {
-    if (!isPlatformBrowser(this.platformId)) return false
-
     const token = this.authToken();
     if (!token) return false;
 

@@ -1,8 +1,7 @@
-import { computed, effect, inject, Injectable, PLATFORM_ID, signal } from "@angular/core";
-import { ApiService } from "./api.service";
+import { computed, effect, inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { User } from "../../model/user";
+import { ApiService } from "./api.service";
 import { AuthService } from "./auth.service";
-import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends ApiService {
@@ -24,10 +23,10 @@ export class UserService extends ApiService {
             const token = this.authService.authToken();
             const json = token ? this.authService.parseToken(token) : null;
 
-            if (isPlatformBrowser(this.platformId) && json) {
+            if (json) {
                 const user = new User(json.sub, json.username, json.role, json.createdAt);
                 localStorage.setItem('user', JSON.stringify(user));
-            } else if (isPlatformBrowser(this.platformId)) {
+            } else {
                 localStorage.removeItem('user');
             }
         })
