@@ -5,6 +5,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { GuestGuard } from './core/guards/guest.guard';
 import { RegisterForm } from './register-form/register-form';
 import { Layout } from './layout/layout';
+import { UserDetails } from './user-details/user-details';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'home', component: Home },
+      { path: ':username', component: UserDetails },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

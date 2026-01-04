@@ -13,6 +13,6 @@ import { PostInput } from "./post-input/post-input";
 export class Home {
   pageService = inject(PageService);
   constructor() {
-    this.pageService.title.set('Home');
+    this.pageService.title.set('Home'); //generalize with a base class?
   }
 }
