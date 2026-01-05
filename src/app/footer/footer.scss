@@ -1,0 +1,22 @@
+:host {
+    --card-margin: 20px 0 10px 0;
+    --card-header-padding: 16px 32px 0 32px;
+    --card-content-padding: 0 32px 0 32px;
+    --card-footer-padding: 0 32px 16px 32px;
+}
+
+.footer-wrapper {
+    display: flex;
+    margin: auto;
+    width: 500px;
+    padding-bottom: 15px;
+}
+
+mat-card {
+    width: 100%;
+}
+
+.y-network {
+    font-size: large;
+    font-weight: bold;
+}
