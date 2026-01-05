@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PageService } from '../core/services/page.service';
 import { Feed } from './feed/feed';
 import { PostInput } from "./post-input/post-input";
+import { Page } from '../page/page';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,6 @@ import { PostInput } from "./post-input/post-input";
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
-  pageService = inject(PageService);
-  constructor() {
-    this.pageService.title.set('Home'); //generalize with a base class?
-  }
+export class Home extends Page {
+  
 }
