@@ -6,6 +6,13 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+:root {
+  --card-margin: 0;
+  --card-header-padding: 16px 16px 0 16px;
+  --card-content-padding: 0 16px 0 16px;
+  --card-footer-padding: 0 16px 16px 16px;
+}
+
 html {
   @include mat.theme((
     color: (
@@ -38,3 +45,19 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card {
+  margin: var(--card-margin) !important;
+
+  mat-card-header {
+    padding: var(--card-header-padding) !important;
+  }
+
+  mat-card-content {
+    padding: var(--card-content-padding) !important;
+  }
+
+  mat-card-footer {
+    padding: var(--card-footer-padding) !important;
+  }
+}

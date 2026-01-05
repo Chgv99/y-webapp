@@ -1,13 +1,11 @@
-mat-card {
-    margin-bottom: 10px;
-}
-
-mat-card * {
-    padding: 0 16px;
+:host {
+    --card-margin: 0 0 10px 0;
+    --card-header-padding: 16px 32px 0 32px;
+    --card-content-padding: 0 32px 0 32px;
+    --card-footer-padding: 0 32px 16px 32px;
 }
 
 mat-card mat-card-header {
-    padding-top: 16px;
     font-weight: bold;
 }
 
