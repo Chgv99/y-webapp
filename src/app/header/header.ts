@@ -19,6 +19,16 @@ export class Header {
   userService = inject(UserService);
   pageService = inject(PageService);
 
+  logoUrl = "assets/images/header-logo.png"
+
+  onHome() {
+    this.router.navigate(['/home']);
+  }
+
+  onProfile() {
+    this.router.navigate(['/' + this.userService.user()?.username]);
+  }
+
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/login']);

@@ -6,6 +6,22 @@ mat-toolbar {
 
     align-items: center;
 
+    img {
+        width: 30px;
+        margin-right: 20px;
+    }
+
+    #home {
+        width: 20px;
+        padding: 0;
+        margin: 0;
+
+        * {
+            margin: 0;
+            padding:0;
+        }
+    }
+
     h2 {
         margin-right: auto;
     }
