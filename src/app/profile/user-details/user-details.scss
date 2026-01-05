@@ -1,0 +1,20 @@
+:host {
+    --card-margin: 0 0 10px 0;
+    --card-content-padding: 16px;
+}
+
+img {
+    width: 100px;
+}
+
+mat-card-content {
+    display: flex;
+
+    .left-col {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-right: 30px;
+    }
+}

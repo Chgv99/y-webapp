@@ -1,6 +1,14 @@
 
 <mat-card>
     <mat-card-content>
-        <img src={{picUrl}}>
+        <div class="left-col">
+            <img src={{picUrl}}>
+            <p>{{userService.user()?.username}}</p>
+        </div>
+        <div class="right-col">
+            <p>Posts: {{userPosts}}</p>
+            <p>Followers: {{userFollowers}}</p>
+            <p>Joined on: {{userCreatedAt}}</p>
+        </div>
     </mat-card-content>
 </mat-card>

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatCard, MatCardContent } from "@angular/material/card";
-import { Page } from '../../page/page';
+import { UserService } from '../../core/services/user.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-user-details',
@@ -9,5 +10,14 @@ import { Page } from '../../page/page';
   styleUrl: './user-details.scss',
 })
 export class UserDetails {
+  userService = inject(UserService);
   picUrl = 'assets/images/user.png';
+  createdAt: Date = this.userService.user()?.createdAt ?? new Date();
+  userCreatedAt = format(this.createdAt, 'dd-MM-yyyy');
+  userPosts = 0;
+  userFollowers = 0;
+
+  ngOnInit() {
+    
+  }
 }

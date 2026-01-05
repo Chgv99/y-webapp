@@ -11,7 +11,7 @@ export class UserService extends ApiService {
     user = computed(() => {
         const json = this.authService.parseToken(this.authService.authToken() ?? '')
         if (json) {
-            return new User(json.sub, json.username, json.role, json.createdAt)
+            return new User(json.sub, json.username, json.role, new Date(json.createdAt))
         }
         return null;
     });
