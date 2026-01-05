@@ -10,6 +10,6 @@ export class Page {
   }
 
   protected loadPageData() {
-    this.pageService.title.set('Home');
+    this.pageService.title = this.constructor.name;
   }
 }
