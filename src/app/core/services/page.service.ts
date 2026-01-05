@@ -1,7 +1,18 @@
-import { Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { ApiService } from "./api.service";
+import { Title } from "@angular/platform-browser";
 
 @Injectable({ providedIn: 'root' })
 export class PageService extends ApiService {
-    public title = signal<string>('Title');
+    private titleService = inject(Title);
+    private titleSignal = signal<string>('Title');
+
+    public get title(): string {
+        return this.titleSignal();
+    }
+
+    public set title(title: string) {
+        this.titleSignal.set(title);
+        this.titleService.setTitle(title);
+    }
 }
