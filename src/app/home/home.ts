@@ -14,5 +14,5 @@ import { FeedService } from '../core/services/feed.service';
 })
 export class Home extends Page {
   feedService = inject(FeedService);
-  feed$ = this.feedService.getFeed();
+  feed$ = this.feedService.getGenericFeed();
 }

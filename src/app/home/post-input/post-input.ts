@@ -28,7 +28,7 @@ export class PostInput {
     this.submitted = true;
     if (!this.form.valid) return;
     this.postService.sendPost(this.form.value.message).subscribe(() => {
-      this.feedService.getFeed();
+      this.feedService.getGenericFeed();
       this.form.reset();
     })
   }
