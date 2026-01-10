@@ -4,6 +4,7 @@ import { PageService } from '../core/services/page.service';
 import { Feed } from './feed/feed';
 import { PostInput } from "./post-input/post-input";
 import { Page } from '../page/page';
+import { FeedService } from '../core/services/feed.service';
 
 @Component({
   selector: 'app-home',
@@ -12,5 +13,6 @@ import { Page } from '../page/page';
   styleUrl: './home.scss',
 })
 export class Home extends Page {
-  
+  feedService = inject(FeedService);
+  feed$ = this.feedService.getFeed();
 }

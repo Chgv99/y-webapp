@@ -1,10 +1,11 @@
-
 <mat-card>
     <mat-card-content>
-        <div class="left-col">
-            <img src={{picUrl}}>
-            <p>{{userService.user()?.username}}</p>
-        </div>
+        <ng-container *ngIf="user$() | async as user">
+            <div class="left-col">
+                <img src={{picUrl}}>
+                <p>{{user.username}}</p>
+            </div>
+        </ng-container>
         <div class="right-col">
             <p>Posts: {{userPosts}}</p>
             <p>Followers: {{userFollowers}}</p>

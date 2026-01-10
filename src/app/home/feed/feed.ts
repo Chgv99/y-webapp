@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FeedService } from '../../core/services/feed.service';
+import { Component, input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Post } from '../../model/post';
 import { FeedPost } from './feed-post/feed-post';
 
@@ -11,15 +11,7 @@ import { FeedPost } from './feed-post/feed-post';
   styleUrl: './feed.scss',
 })
 export class Feed {
-  feedService = inject(FeedService);
-
-  ngOnInit() {
-    this.getFeed();
-  }
-
-  getFeed() {
-    this.feedService.getFeed();
-  }
+  feed = input<Observable<Post[]>>();
 
   trackById(index: number, post: Post) {
     return post.message;

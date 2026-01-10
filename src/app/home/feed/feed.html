@@ -1,4 +1,4 @@
-@for (post of feedService.feed(); track $index) {
+@for (post of feed() | async; track $index) {
   <app-feed-post [post]="post"></app-feed-post>
 } @empty {
   <p>No posts to show</p>
