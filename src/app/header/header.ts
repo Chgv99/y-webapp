@@ -26,7 +26,7 @@ export class Header {
   }
 
   onProfile() {
-    this.router.navigate(['/' + this.userService.user()?.username]);
+    this.router.navigate(['/' + this.userService.currentUser()?.username]);
   }
 
   onLogout() {
