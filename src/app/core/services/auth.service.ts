@@ -27,7 +27,7 @@ export class AuthService extends ApiService {
   }
 
   login(username: string, password: string)/*: Observable<LoginResponse>*/ {
-    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API}/auth/login`, { username: username, password: password });
+    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/login`, { username: username, password: password });
     res.subscribe({
       next: res => {
         this.authToken.set(res.token);
@@ -41,7 +41,7 @@ export class AuthService extends ApiService {
   }
 
   register(username: string, password: string)/*: Observable<LoginResponse>*/ {
-    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API}/auth/register`, { username: username, password: password });
+    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/register`, { username: username, password: password });
     res.subscribe({
       next: res => {
         this.authToken.set(res.token);

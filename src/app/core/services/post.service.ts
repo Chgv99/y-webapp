@@ -12,7 +12,7 @@ export class PostService extends ApiService {
     sendPost(message: string) {
         return this.http
             .post(
-                `${this.API}/api/post`,
+                `${this.API_BASE_URL}/api/post`,
                 {
                     "message": message
                 }
