@@ -40,8 +40,8 @@ export class AuthService extends ApiService {
     this.clearToken();
   }
 
-  register(username: string, password: string)/*: Observable<LoginResponse>*/ {
-    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/register`, { username: username, password: password });
+  register(username: string, firstname: string, lastname: string, password: string)/*: Observable<LoginResponse>*/ {
+    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/register`, { username: username, firstName: firstname, lastName: lastname, password: password });
     res.subscribe({
       next: res => {
         this.authToken.set(res.token);

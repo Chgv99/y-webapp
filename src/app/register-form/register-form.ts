@@ -27,6 +27,8 @@ export class RegisterForm {
   ngOnInit() {
     this.form = new FormGroup({
       username: new FormControl('', Validators.required),
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       password2: new FormControl('', Validators.required)
     });
@@ -36,7 +38,7 @@ export class RegisterForm {
     this.submitted = true;
     if (!this.form.valid) return;
     if (this.form.value.password !== this.form.value.password2) return; // TODO: display an error
-    this.authService.register(this.form.value.username, this.form.value.password).subscribe({
+    this.authService.register(this.form.value.username, this.form.value.firstname, this.form.value.lastname, this.form.value.password).subscribe({
       next: res => {
         this.router.navigate(['/home'])
       },
