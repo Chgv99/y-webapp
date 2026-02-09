@@ -35,7 +35,7 @@ export class LoginForm {
     this.submitted = true;
     if (!this.form.valid) return;
     this.authService.login(this.form.value.username, this.form.value.password).subscribe({
-      next: res => {
+      next: () => {
         this.router.navigate(['/home'])
       },
       error: err => console.error('error', err)

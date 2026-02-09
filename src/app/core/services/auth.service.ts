@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { AuthResponse } from '../dto/auth-response';
 import { ApiService } from './api.service';
 
@@ -26,28 +26,27 @@ export class AuthService extends ApiService {
     });
   }
 
-  login(username: string, password: string)/*: Observable<LoginResponse>*/ {
-    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/login`, { username: username, password: password });
-    res.subscribe({
-      next: res => {
+  login(username: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/login`, { username: username, password: password }, { withCredentials: true })
+      .pipe(tap(res => {
         this.authToken.set(res.token);
-      }
-    });
-    return res;
+      }));
   }
 
   logout() {
     this.clearToken();
   }
 
-  register(username: string, firstname: string, lastname: string, password: string)/*: Observable<LoginResponse>*/ {
-    var res: Observable<AuthResponse> = this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/register`, { username: username, firstName: firstname, lastName: lastname, password: password });
-    res.subscribe({
-      next: res => {
+  register(username: string, firstname: string, lastname: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/register`, { username: username, firstName: firstname, lastName: lastname, password: password }, { withCredentials: true })
+      .pipe(tap(res => {
         this.authToken.set(res.token);
-      }
-    });
-    return res;
+      }));
+  }
+
+  refresh(): Observable<string> {
+    return this.http.post<AuthResponse>(`${this.API_BASE_URL}/auth/refresh`, { }, { withCredentials: true })
+      .pipe(map(res => res.token));
   }
 
   isLoggedIn(): boolean {
@@ -66,7 +65,7 @@ export class AuthService extends ApiService {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem('token');
     }
-    this.authToken.set('');
+    this.authToken.set(null);
   }
 
   parseToken(token: string) {

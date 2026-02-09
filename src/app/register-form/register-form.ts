@@ -39,7 +39,7 @@ export class RegisterForm {
     if (!this.form.valid) return;
     if (this.form.value.password !== this.form.value.password2) return; // TODO: display an error
     this.authService.register(this.form.value.username, this.form.value.firstname, this.form.value.lastname, this.form.value.password).subscribe({
-      next: res => {
+      next: () => {
         this.router.navigate(['/home'])
       },
       error: err => console.error('error', err)
