@@ -5,11 +5,12 @@
                 <img src={{picUrl}}>
                 <p>{{user.username}}</p>
             </div>
+            <div class="right-col">
+                <p>{{user.detail.firstName + " " + user.detail.lastName}}</p>
+                <p>Posts: {{userPosts}}</p>
+                <p>Followers: {{userFollowers}}</p>
+                <p>Joined on: {{userCreatedAt}}</p>
+            </div>
         </ng-container>
-        <div class="right-col">
-            <p>Posts: {{userPosts}}</p>
-            <p>Followers: {{userFollowers}}</p>
-            <p>Joined on: {{userCreatedAt}}</p>
-        </div>
     </mat-card-content>
 </mat-card>

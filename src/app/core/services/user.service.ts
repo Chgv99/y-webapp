@@ -16,7 +16,7 @@ export class UserService extends ApiService {
     public currentUser = computed(() => {
         const json = this.authService.parseToken(this.authService.authToken() ?? '')
         if (json) {
-            return new User(json.sub, json.username, json.role, new Date(json.createdAt))
+            return new User(json.sub, json.username, json.role, json.details, new Date(json.createdAt))
         }
         return null;
     });
@@ -29,7 +29,7 @@ export class UserService extends ApiService {
             const json = token ? this.authService.parseToken(token) : null;
 
             if (json) {
-                const user = new User(json.sub, json.username, json.role, json.createdAt);
+                const user = new User(json.sub, json.username, json.role, json.details, json.createdAt);
                 localStorage.setItem('user', JSON.stringify(user));
             } else {
                 localStorage.removeItem('user');
@@ -45,7 +45,7 @@ export class UserService extends ApiService {
         return this.http
             .get<any>(`${this.API_BASE_URL}${this.RESOURCE_URI}?usernames=${username}`)
             .pipe(
-                map((users: any[]) => users.length > 0 ? new User(users[0].uuid, users[0].username, '', users[0].createdAt) : null)
+                map((users: any[]) => users.length > 0 ? new User(users[0].uuid, users[0].username, '', users[0].detail, users[0].createdAt) : null)
             );
     }
 
