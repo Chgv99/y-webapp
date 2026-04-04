@@ -22,7 +22,8 @@ export class Profile extends Page {
   paramMap = toSignal(this.route.paramMap, { initialValue: this.route.snapshot.paramMap });
 
   username = computed(() => this.paramMap()?.get('username'));
-  user$ = computed(() => this.userService.getUser(this.username() ?? ''));
+  // user$ = computed(() => this.userService.getUser(this.username() ?? ''));
+  user = toSignal(this.userService.getUser(this.username() ?? ''), { initialValue: null });
   
   feed$ = computed(() => this.feedService.getFeedByUser(this.username() ?? ''));
 

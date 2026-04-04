@@ -1,16 +1,19 @@
 <mat-card>
     <mat-card-content>
-        <ng-container *ngIf="user$() | async as user">
+        <!-- <ng-container *ngIf="user$() | async as user"> -->
             <div class="left-col">
                 <img src={{picUrl}}>
-                <p>{{user.username}}</p>
+                <p>{{user()?.username}}</p>
             </div>
             <div class="right-col">
-                <p>{{user.detail.firstName + " " + user.detail.lastName}}</p>
+                <p>{{user()?.detail?.firstName + " " + user()?.detail?.lastName}}</p>
                 <p>Posts: {{userPosts}}</p>
                 <p>Followers: {{userFollowers}}</p>
                 <p>Joined on: {{userCreatedAt}}</p>
             </div>
-        </ng-container>
+            <div>
+                <p>isCurrent: {{ isCurrent() }}</p>
+            </div>
+        <!-- </ng-container> -->
     </mat-card-content>
 </mat-card>

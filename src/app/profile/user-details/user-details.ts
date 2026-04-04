@@ -14,7 +14,12 @@ import { CommonModule } from '@angular/common';
 })
 export class UserDetails {
   userService = inject(UserService);
-  user$ = input.required<Observable<User | null>>();
+  user = input.required<User | null>();
+
+  isCurrent = computed(() => {
+    const currentUser: User | null = this.userService.currentUser();
+    return currentUser?.uuid === this.user()?.uuid;
+  })
   picUrl = 'assets/images/user.png';
   createdAt: Date = this.userService.currentUser()?.createdAt ?? new Date();
   userCreatedAt = format(this.createdAt, 'dd-MM-yyyy');
