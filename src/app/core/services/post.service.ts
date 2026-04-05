@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { ApiService } from "./api.service";
 import { HttpClient } from "@angular/common/http";
-import { AuthService } from "./auth.service";
+import { Injectable } from "@angular/core";
 import { map, Observable, of } from "rxjs";
 import { Post } from "../../model/post";
+import { ApiService } from "./api.service";
+import { AuthService } from "./auth.service";
 
 @Injectable({ providedIn: 'root' })
 export class PostService extends ApiService {
@@ -16,7 +16,7 @@ export class PostService extends ApiService {
     sendPost(message: string) {
         return this.http
             .post(
-                `${this.API_BASE_URL}/api/post`,
+                `${this.API_BASE_URL}${this.RESOURCE_URI}`,
                 {
                     "message": message
                 }
